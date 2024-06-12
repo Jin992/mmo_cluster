@@ -1,0 +1,18 @@
+[package]
+name = "game_service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"]}
+mini-redis = "0.4.1"
+bytes = "1"
+
+
+prost = "0.12"
+# Only necessary if using Protobuf well-known types:
+prost-types = "0.12"
+prost-build = "0.12.6"
+
+[build-dependencies]
+prost-build = { version = "0.12" }
