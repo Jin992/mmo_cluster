@@ -13,6 +13,7 @@ prost = "0.12"
 # Only necessary if using Protobuf well-known types:
 prost-types = "0.12"
 prost-build = "0.12.6"
+protobuf = "3.4.0"
 
 [build-dependencies]
 prost-build = { version = "0.12" }
