@@ -1,8 +1,7 @@
 use prost::Message;
 use tokio::net::TcpStream;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
-use crate::proto_gen::game_service_proto::GameServiceMessage;
-use crate::proto_gen::game_service_proto::GameServiceMessageTypeE;
+use crate::proto_gen::game_service_proto::{GameServiceMessage, GameServiceMessageTypeE};
 use crate::game::player::Player;
 
 use crate::game::commands::cmd_base::CmdBase;
@@ -25,7 +24,7 @@ impl GameSession {
     }
     async fn handle_player(&mut self, player:& mut Player, buf: Vec<u8>) -> Vec<u8> {
         let msg = GameServiceMessage::decode(&*buf).expect("Failed to decode message");
-        self.actions[&msg.id()].exec(player)
+        self.actions[&msg.id()].exec(player, msg)
     }
 
     pub async fn start(&mut self) {

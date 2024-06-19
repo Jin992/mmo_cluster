@@ -31,12 +31,13 @@ message Character {
  }
 
  message CharactersLoadReq {
-
+   uint64 token = 1;
  }
 
 message CharactersLoadResp {
    bool                result     = 1;
-   repeated Character  characters = 2;
+   Character           player     = 2;
+   repeated Character  characters = 3;
 }
 
 message CharactersUpdateReq {
