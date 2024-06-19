@@ -4,21 +4,17 @@ mod proto_gen {
 use protobuf::Message;
 
 mod game {
-    pub mod session;
-    mod char {
-        pub mod character;
-        pub mod motion;
-        pub mod vector_xyz;
-    }
-    mod commands {
+    pub mod commands {
         pub mod cmd_base;
         pub mod cmd_character_load;
         pub mod cmd_character_update;
     }
+    pub mod player;
 }
 
 mod network {
     pub mod server;
+    pub mod session;
 }
 
 

@@ -1,30 +1,16 @@
-use crate::game::char::character::Character;
+use crate::game::player::Player;
 use crate::game::commands::cmd_base::CmdBase;
-use crate::game::commands::cmd_base::CommandId;
-pub struct CmdCharacterLoad {
-    id: CommandId,
-}
-
-impl Default for CmdCharacterLoad {
-    fn default() -> Self {
-        CmdCharacterLoad {
-            id: CommandId::CmdCharacterLoad,
-        }
-    }
-}
+pub struct CmdCharacterLoad;
 
 impl CmdBase for CmdCharacterLoad {
-    fn id(&self) -> CommandId {
-        self.id.clone()
-    }
 
-    fn exec(&self, character: &mut Character) {
+    fn exec(&self, character: &mut Player) -> Vec<u8> {
         todo!()
     }
 }
 
 impl CmdCharacterLoad {
     pub fn new() -> Self {
-        Default::default()
+        CmdCharacterLoad
     }
 }

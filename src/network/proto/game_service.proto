@@ -1,47 +1,59 @@
 syntax = "proto3";
 
-package mmo_proto;
+package gameServiceProto;
 import "google/protobuf/any.proto";
 
- enum MessageTypeE{
-     AuthReq = 0;
-     AuthReqAck = 1;
- }
-
- message AuthRequest {
-     string login = 1;
-     string password = 2;
- }
-
- message AuthRequestAck {
-     bool result = 1;
-     google.protobuf.Any type = 3;
- }
-
- message NetworkMessage {
-     MessageTypeE id = 1;
-     oneof payload {
-         AuthRequest    auth_req = 2;
-         AuthRequestAck auth_req_ack = 3;
-     }
- }
-
 message XYZVector {
-    int32 x = 1;
-    int32 y = 2;
-    int32 z = 3;
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
 }
 
 message Motion {
-    string    mapName  = 1;
-    XYZVector position = 2;
-    XYZVector rotation = 3;
-    XYZVector velocity = 4;
+  string    mapName  = 1;
+  XYZVector position = 2;
+  XYZVector rotation = 3;
+  XYZVector velocity = 4;
 }
 
 message Character {
-    string id = 1;
-    string instanceId = 2;
-    string mapId = 3;
-    Motion motion = 4;
+  string id = 1;
+  string instanceId = 2;
+  string mapId = 3;
+  Motion motion = 4;
+}
+
+ enum GameServiceMessageTypeE{
+     CharactersLoadReqE     = 0;
+     CharactersLoadRespE    = 1;
+     CharactersUpdateReqE   = 2;
+     CharactersUpdateRespE  = 3;
+ }
+
+ message CharactersLoadReq {
+
+ }
+
+message CharactersLoadResp {
+   bool                result     = 1;
+   repeated Character  characters = 2;
+}
+
+message CharactersUpdateReq {
+  repeated Character  characters = 2;
+}
+
+message CharactersUpdateResp {
+   bool                result     = 1;
+   repeated Character  characters = 2;
+}
+
+message GameServiceMessage {
+   GameServiceMessageTypeE id = 1;
+   oneof payload {
+     CharactersLoadReq    characters_load_request    = 2;
+     CharactersLoadResp   characters_load_response   = 3;
+     CharactersUpdateReq  characters_update_request  = 4;
+     CharactersUpdateResp characters_update_response = 5;
+   }
 }

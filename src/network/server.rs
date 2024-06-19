@@ -1,5 +1,5 @@
 use tokio::net::TcpListener;
-use crate::game::session::GameSession;
+use crate::network::session::GameSession;
 
 pub struct Server {
     ip_addr: String,
