@@ -28,7 +28,6 @@ impl GameSession {
     }
 
     pub async fn start(&mut self) {
-        let mut buf: Vec<u8> = vec![0; 4096];
         let mut player= Player::new();
 
         loop {
@@ -42,7 +41,8 @@ impl GameSession {
                 if n == 0 {
                     return;
                 }
-                buf = self.handle_player(&mut player, buf).await;
+                let read_buf = buf[..n].to_vec();
+                buf = self.handle_player(&mut player, read_buf).await;
                 self.socket.write_all(&buf).await
                     .expect("failed to write data to socket");
             }

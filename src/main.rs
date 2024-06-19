@@ -21,7 +21,7 @@ mod network {
 use crate::network::server::Server;
 
 const SERVICE_IP_ADDR:&str = "127.0.0.1";
-const SERVICE_PORT:&str = "6379";
+const SERVICE_PORT:&str = "3333";
 
 
 fn main() {
